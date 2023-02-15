@@ -1,9 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-const port = process.env.PORT || 3000;
+app.use(cors());
 
+const corsOptions = {
+  origin: "http://localhost:8100",
+};
+
+app.use(cors(corsOptions));
+const port = process.env.PORT || 3000;
 // Conexión a la base de datos
 mongoose.connect("mongodb://localhost:27017/platos", {
   useNewUrlParser: true,
